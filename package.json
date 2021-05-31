@@ -1,0 +1,17 @@
+{
+  "name": "nkopi-solver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.3"
+  }
+}
