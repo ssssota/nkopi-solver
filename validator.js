@@ -1,6 +1,6 @@
 // @ts-check
 
-const chars = 'おうちまんこ'.split('');
+const chars = 'おうちまんこ？'.split('');
 const validWords = [
   'うんこ',
   'うんち',
@@ -86,7 +86,23 @@ const validationWord = (word) => {
  * @param {string} word
  * @returns {boolean}
  */
-const isValidWord = (word) => validWords.includes(word);
+const isValidWord = (word) => {
+  for(let targetWord of validWords) {
+    if(word.length < targetWord.length) continue;
+    let flag = true;
+    for (let head = 0; head <= word.length - targetWord.length; head++) {
+      for (let i = 0; i < targetWord.length; i++) {
+        if(word[i + head] != '？' && word[i + head] != targetWord[i]) {
+          flag = false;
+          break;
+        }
+      }
+      if (!flag) break;
+    }
+    if (flag) return true;
+  }
+  return false;
+}
 
 module.exports = {
   chars,

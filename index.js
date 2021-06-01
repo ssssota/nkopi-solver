@@ -30,11 +30,12 @@ const replaceable = target
  */
 const recursive = (target, chars) => {
   const questionIndex = target.indexOf('？');
-  if (chars.length === 0) {
-    if (isValid(target)) {
-      console.log(target);
-      return true;
-    }
+  if (!isValid(target)) {
+    return false;
+  }
+  else if (chars.length == 0) {
+    console.log(target);
+    return true;
   }
   for (let i = 0; i < chars.length; i++) {
     const clonedChars = [...chars];
