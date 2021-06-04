@@ -1,26 +1,30 @@
-import { nkopiChars, NkopiNode, NkopiProblem } from "./types";
+import { nkopiCharFromChar } from "./char.ts";
+import { NkopiChar, NkopiNode, NkopiProblem } from "./types.ts";
 
 export const parseProblem = (input: string): NkopiProblem => {
-  const chars = [];
+  const chars: NkopiChar[] = [];
   const nodes: NkopiNode[][] = input
-    .split('\n')
+    .split("\n")
     .filter((line) => !line.match(/^\s*$/))
-    .map((line) => line.split('').map((char: string) => {
-      chars.push(char);
-      return {
-        parents: [undefined, undefined],
-        children: [undefined, undefined],
-        char: (nkopiChars as readonly string[]).includes(char)
-          ? undefined
-          : null,
-      };
-    }));
+    .map((line) =>
+      line.split("").map((char: string) => {
+        const parsedChar = nkopiCharFromChar(char);
+        if (parsedChar !== null) chars.push(parsedChar);
+        return {
+          parents: [undefined, undefined],
+          children: [undefined, undefined],
+          char: (parsedChar === null) ? null : undefined,
+        };
+      })
+    );
 
   const height = nodes.length;
   const width = nodes[0]?.length;
 
-  if (height === 0 || width === 0 || nodes.some((line) => line.length !== width)) {
-    throw new Error('Invalid input.');
+  if (
+    height === 0 || width === 0 || nodes.some((line) => line.length !== width)
+  ) {
+    throw new Error("Invalid input.");
   }
 
   for (let y = 0; y < height; y++) {

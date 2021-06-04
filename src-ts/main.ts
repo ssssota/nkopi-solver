@@ -1,4 +1,4 @@
-import { parseProblem } from "./nkopi";
+import { parseProblem } from "./nkopi/mod.ts";
 
 const problem = parseProblem(`
 んうまう　

@@ -1,4 +1,4 @@
-export const nkopiChars = ['お', 'ま', 'ん', 'こ', 'う', 'ち'] as const;
+export const nkopiChars = ["お", "ま", "ん", "こ", "う", "ち"] as const;
 export type NkopiChar = typeof nkopiChars[number];
 
 export type NkopiNode = {
